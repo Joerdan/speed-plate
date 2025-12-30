@@ -28,6 +28,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="settings-styles.css">
+    <link rel="stylesheet" href="keyboard.css">
 </head>
 
 <body>
@@ -110,7 +111,63 @@
 
                 <div id="feedback" class="feedback-msg"></div>
                 <div id="input-area" class="input-area hidden">
-                    <input type="text" id="user-guess" placeholder="ENTER PLATE" maxlength="10" autocomplete="off">
+                    <input type="text" id="user-guess" placeholder="ENTER PLATE" maxlength="10" autocomplete="off"
+                        readonly>
+
+                    <!-- Custom On-Screen Keyboard for Mobile -->
+                    <div id="custom-keyboard" class="custom-keyboard">
+                        <div class="keyboard-row">
+                            <button class="key-btn" data-key="A">A</button>
+                            <button class="key-btn" data-key="B">B</button>
+                            <button class="key-btn" data-key="C">C</button>
+                            <button class="key-btn" data-key="D">D</button>
+                            <button class="key-btn" data-key="E">E</button>
+                            <button class="key-btn" data-key="F">F</button>
+                            <button class="key-btn" data-key="G">G</button>
+                        </div>
+                        <div class="keyboard-row">
+                            <button class="key-btn" data-key="H">H</button>
+                            <button class="key-btn" data-key="I">I</button>
+                            <button class="key-btn" data-key="J">J</button>
+                            <button class="key-btn" data-key="K">K</button>
+                            <button class="key-btn" data-key="L">L</button>
+                            <button class="key-btn" data-key="M">M</button>
+                            <button class="key-btn" data-key="N">N</button>
+                        </div>
+                        <div class="keyboard-row">
+                            <button class="key-btn" data-key="O">O</button>
+                            <button class="key-btn" data-key="P">P</button>
+                            <button class="key-btn" data-key="Q">Q</button>
+                            <button class="key-btn" data-key="R">R</button>
+                            <button class="key-btn" data-key="S">S</button>
+                            <button class="key-btn" data-key="T">T</button>
+                            <button class="key-btn" data-key="U">U</button>
+                        </div>
+                        <div class="keyboard-row">
+                            <button class="key-btn" data-key="V">V</button>
+                            <button class="key-btn" data-key="W">W</button>
+                            <button class="key-btn" data-key="X">X</button>
+                            <button class="key-btn" data-key="Y">Y</button>
+                            <button class="key-btn" data-key="Z">Z</button>
+                            <button class="key-btn" data-key="-">-</button>
+                        </div>
+                        <div class="keyboard-row">
+                            <button class="key-btn" data-key="0">0</button>
+                            <button class="key-btn" data-key="1">1</button>
+                            <button class="key-btn" data-key="2">2</button>
+                            <button class="key-btn" data-key="3">3</button>
+                            <button class="key-btn" data-key="4">4</button>
+                            <button class="key-btn" data-key="5">5</button>
+                            <button class="key-btn" data-key="6">6</button>
+                            <button class="key-btn" data-key="7">7</button>
+                            <button class="key-btn" data-key="8">8</button>
+                            <button class="key-btn" data-key="9">9</button>
+                        </div>
+                        <div class="keyboard-row keyboard-row-action">
+                            <button class="key-btn key-delete" data-action="delete">⌫ DELETE</button>
+                            <button class="key-btn key-enter" data-action="enter">✓ ENTER</button>
+                        </div>
+                    </div>
                 </div>
             </div>
 

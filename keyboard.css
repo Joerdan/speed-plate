@@ -1,0 +1,117 @@
+/* Custom On-Screen Keyboard */
+.custom-keyboard {
+    display: none;
+    width: 100%;
+    max-width: 500px;
+    margin: 1.5rem auto 0;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 12px;
+    border: 1px solid rgba(0, 243, 255, 0.2);
+}
+
+.keyboard-row {
+    display: flex;
+    gap: 0.4rem;
+    margin-bottom: 0.4rem;
+    justify-content: center;
+}
+
+.keyboard-row-action {
+    gap: 0.5rem;
+}
+
+.key-btn {
+    flex: 1;
+    min-width: 40px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--text-main);
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.15s;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.key-btn:active {
+    background: var(--primary);
+    color: #000;
+    transform: scale(0.95);
+    box-shadow: 0 0 20px var(--primary-glow);
+}
+
+.key-delete,
+.key-enter {
+    flex: 2;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.key-delete {
+    background: rgba(255, 0, 85, 0.2);
+    border-color: var(--secondary);
+}
+
+.key-delete:active {
+    background: var(--secondary);
+    color: #fff;
+}
+
+.key-enter {
+    background: rgba(0, 255, 136, 0.2);
+    border-color: var(--success-green);
+}
+
+.key-enter:active {
+    background: var(--success-green);
+    color: #000;
+}
+
+/* Show keyboard on mobile */
+@media (max-width: 768px) {
+    .custom-keyboard {
+        display: block;
+    }
+
+    #user-guess {
+        cursor: default;
+        caret-color: transparent;
+    }
+
+    /* Prevent native keyboard */
+    #user-guess:focus {
+        outline: none;
+    }
+}
+
+/* Prevent scrolling on mobile */
+@media (max-width: 768px) {
+
+    html,
+    body {
+        overflow: hidden;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+    }
+
+    .app-container {
+        overflow-y: auto;
+        height: 100%;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .game-board {
+        min-height: auto;
+    }
+
+    #input-area {
+        position: relative;
+        margin-top: 0;
+    }
+}
