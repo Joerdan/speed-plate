@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, interactive-widget=resizes-content">
+    <title>Speed Plate | Reaction & Memory Trainer</title>
+    <meta name="description"
+        content="Train your photographic memory and reaction speed with Speed Plate. Flash. Memorize. Verify.">
+    <meta name="theme-color" content="#0a0a0f">
+
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Speed Plate">
+    <meta property="og:description" content="Can you memorize the plate in 1 second? Test your speed now.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://placehold.co/1200x630/0a0a0f/00f3ff?text=SPEED+PLATE">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&family=Koulen&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="settings-styles.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Background Elements -->
+        <div class="bg-gradient"></div>
+        <div class="grid-overlay"></div>
+        <div class="crt-overlay"></div>
+
+        <!-- Header -->
+        <header class="main-header">
+            <div class="logo">SPEED <span class="accent">PLATE</span></div>
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <span class="label">LEVEL</span>
+                    <span class="value" id="current-level">1</span>
+                </div>
+                <div class="stat-item">
+                    <span class="label">SCORE</span>
+                    <span class="value" id="score-display">0</span>
+                </div>
+                <div class="stat-item" id="streak-container">
+                    <span class="label">STREAK</span>
+                    <span class="value" id="streak-display">0</span>
+                </div>
+                <div class="stat-item" id="highscore-container">
+                    <span class="label">HIGH SCORE</span>
+                    <span class="value" id="highscore-display">0</span>
+                </div>
+                <!-- Lives Container (Hidden by default) -->
+                <div class="stat-item hidden" id="lives-container">
+                    <span class="label">LIVES</span>
+                    <div class="lives-display" id="lives-display">
+                        <span class="heart active">❤</span>
+                        <span class="heart active">❤</span>
+                        <span class="heart active">❤</span>
+                    </div>
+                </div>
+                <button id="back-to-menu-btn" class="icon-btn hidden" aria-label="Back to Menu">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M19 12H5M12 19l-7-7 7-7" />
+                    </svg>
+                </button>
+                <button id="settings-btn" class="icon-btn" aria-label="Settings">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="3"></circle>
+                        <path
+                            d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Game Area -->
+        <main class="game-board">
+
+            <div id="start-screen" class="screen active">
+                <h1 class="hero-title">READY TO <br>DRIVE?</h1>
+                <p class="hero-subtitle">Memorize the plates. Beat the clock.</p>
+
+                <div class="mode-select">
+                    <button id="start-classic-btn" class="primary-btn glow-effect">CLASSIC</button>
+                    <button id="start-survival-btn" class="primary-btn glow-effect"
+                        style="border-color: var(--secondary); color: var(--secondary); box-shadow: 0 0 20px var(--secondary-glow);">SURVIVAL</button>
+                </div>
+            </div>
+
+            <div id="game-screen" class="screen hidden">
+                <div id="countdown-overlay" class="hidden">3</div>
+
+                <div class="plate-container">
+                    <div id="license-plate" class="license-plate hidden">
+                        <span id="plate-text" class="plate-text">ABCD-123</span>
+                        <div id="timer-bar" class="timer-bar"></div>
+                    </div>
+                </div>
+
+                <div id="feedback" class="feedback-msg"></div>
+                <div id="input-area" class="input-area hidden">
+                    <input type="text" id="user-guess" placeholder="ENTER PLATE" maxlength="10" autocomplete="off">
+                </div>
+            </div>
+
+            <div id="result-screen" class="screen hidden">
+                <h1 class="hero-title" style="color: var(--secondary); -webkit-text-fill-color: var(--secondary);">GAME
+                    OVER</h1>
+                <p class="hero-subtitle">OUT OF LIVES</p>
+                <div class="stat-item" style="align-items: center; margin-bottom: 2rem;">
+                    <span class="label">FINAL SCORE</span>
+                    <span class="value" id="final-score" style="font-size: 3rem; color: #fff;">0</span>
+                </div>
+                <button id="restart-btn" class="primary-btn glow-effect">TRY AGAIN</button>
+            </div>
+
+        </main>
+
+        <!-- Settings Modal -->
+        <div id="settings-modal" class="modal hidden">
+            <div class="modal-content glass-panel">
+                <div class="modal-header">
+                    <h2>GAME SETTINGS</h2>
+                    <button class="close-btn" id="close-settings">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <!-- Timing Section -->
+                    <div class="settings-section">
+                        <h3 class="section-title">⏱️ TIMING</h3>
+                        <div class="setting-row">
+                            <label>Exposure Time</label>
+                            <div class="setting-control">
+                                <input type="range" id="exposure-time" min="100" max="3000" step="100" value="1000">
+                                <span class="value-display" id="exposure-value">1000ms</span>
+                            </div>
+                        </div>
+                        <div class="setting-row">
+                            <label>Auto-Level Up</label>
+                            <div class="setting-control">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="auto-level" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                                <span class="setting-hint">Speed increases after consecutive wins</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Plate Format Section -->
+                    <div class="settings-section">
+                        <h3 class="section-title">🎯 PLATE FORMAT</h3>
+                        <div class="setting-row">
+                            <label>Difficulty Preset</label>
+                            <div class="setting-control">
+                                <select id="difficulty-select" class="styled-select">
+                                    <option value="easy">Easy (ABC-123)</option>
+                                    <option value="medium" selected>Medium (ABC-1234)</option>
+                                    <option value="hard">Hard (Mixed 7 Chars)</option>
+                                    <option value="custom">Custom Configuration</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Custom Configuration Panel -->
+                        <div id="custom-settings-panel" class="custom-panel hidden">
+                            <div class="custom-grid">
+                                <div class="custom-option">
+                                    <input type="checkbox" id="custom-letters" checked>
+                                    <label for="custom-letters">A-Z</label>
+                                </div>
+                                <div class="custom-option">
+                                    <input type="checkbox" id="custom-numbers" checked>
+                                    <label for="custom-numbers">0-9</label>
+                                </div>
+                                <div class="custom-option">
+                                    <input type="checkbox" id="custom-dash">
+                                    <label for="custom-dash">Dash (-)</label>
+                                </div>
+                            </div>
+                            <div class="setting-row">
+                                <label>Plate Length</label>
+                                <div class="setting-control">
+                                    <input type="range" id="custom-length" min="3" max="10" value="7">
+                                    <span class="value-display" id="custom-length-val">7</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Info Section -->
+                    <div class="settings-info">
+                        <p><strong>Note:</strong> Settings apply to both Classic and Survival modes. Survival mode
+                            always uses 3 lives and progressive difficulty.</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="reset-stats" class="danger-btn">Reset All Stats</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
