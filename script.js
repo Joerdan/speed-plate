@@ -267,8 +267,10 @@ function init() {
         });
     }
 
-    // Prevent native keyboard on mobile
-    if (window.innerWidth <= 768) {
+    // Prevent native keyboard on mobile ONLY (touch devices)
+    const isMobile = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    if (isMobile && window.innerWidth <= 768) {
+        ui.plate.input.setAttribute('readonly', 'readonly');
         ui.plate.input.addEventListener('focus', (e) => {
             e.target.blur();
         });

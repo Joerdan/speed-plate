@@ -1,75 +1,76 @@
-/* Custom On-Screen Keyboard */
+/* Custom On-Screen Keyboard - Compact for iPhone */
 .custom-keyboard {
     display: none;
     width: 100%;
-    max-width: 500px;
-    margin: 1.5rem auto 0;
-    padding: 1rem;
-    background: rgba(0, 0, 0, 0.5);
-    border-radius: 12px;
-    border: 1px solid rgba(0, 243, 255, 0.2);
+    max-width: 100%;
+    margin: 0.5rem auto 0;
+    padding: 0.5rem;
+    background: rgba(30, 30, 35, 0.95);
+    border-radius: 8px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding-bottom: env(safe-area-inset-bottom, 10px);
 }
 
 .keyboard-row {
     display: flex;
-    gap: 0.4rem;
-    margin-bottom: 0.4rem;
+    gap: 3px;
+    margin-bottom: 4px;
     justify-content: center;
 }
 
 .keyboard-row-action {
-    gap: 0.5rem;
+    gap: 6px;
 }
 
 .key-btn {
     flex: 1;
-    min-width: 40px;
-    height: 48px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: var(--text-main);
-    font-family: var(--font-mono);
-    font-size: 1.1rem;
-    font-weight: 600;
-    border-radius: 6px;
+    max-width: 36px;
+    height: 42px;
+    background: rgba(80, 80, 90, 0.9);
+    border: none;
+    color: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 5px;
     cursor: pointer;
-    transition: all 0.15s;
+    transition: all 0.1s;
     user-select: none;
     -webkit-tap-highlight-color: transparent;
 }
 
 .key-btn:active {
-    background: var(--primary);
+    background: #fff;
     color: #000;
-    transform: scale(0.95);
-    box-shadow: 0 0 20px var(--primary-glow);
+    transform: scale(1.15);
 }
 
 .key-delete,
 .key-enter {
-    flex: 2;
-    font-size: 0.9rem;
-    font-weight: 700;
+    flex: 1.5;
+    max-width: 70px;
+    font-size: 0.8rem;
+    font-weight: 600;
 }
 
 .key-delete {
-    background: rgba(255, 0, 85, 0.2);
-    border-color: var(--secondary);
+    background: rgba(255, 80, 80, 0.8);
 }
 
 .key-delete:active {
-    background: var(--secondary);
-    color: #fff;
+    background: #ff4444;
 }
 
 .key-enter {
-    background: rgba(0, 255, 136, 0.2);
-    border-color: var(--success-green);
+    background: rgba(0, 200, 100, 0.8);
 }
 
 .key-enter:active {
-    background: var(--success-green);
-    color: #000;
+    background: #00cc66;
 }
 
 /* Show keyboard on mobile */
@@ -80,38 +81,47 @@
 
     #user-guess {
         cursor: default;
-        caret-color: transparent;
-    }
-
-    /* Prevent native keyboard */
-    #user-guess:focus {
-        outline: none;
+        caret-color: var(--primary);
     }
 }
 
-/* Prevent scrolling on mobile */
+/* CRITICAL: Fixed viewport - no scroll - MOBILE ONLY */
 @media (max-width: 768px) {
 
     html,
     body {
         overflow: hidden;
+        height: 100%;
         position: fixed;
         width: 100%;
-        height: 100%;
     }
+}
 
+@media (max-width: 768px) {
     .app-container {
-        overflow-y: auto;
-        height: 100%;
-        -webkit-overflow-scrolling: touch;
+        height: 100vh;
+        height: 100dvh;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
     }
 
     .game-board {
-        min-height: auto;
+        flex: 1;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        padding-top: 1rem;
+        padding-bottom: 180px;
+        /* Space for keyboard */
     }
 
-    #input-area {
-        position: relative;
-        margin-top: 0;
+    .input-area {
+        margin-bottom: 0;
+    }
+
+    .plate-container {
+        margin-bottom: 0.5rem;
     }
 }
