@@ -664,8 +664,17 @@ function updateHearts() {
     const stats = getCurrentStats();
     const hearts = ui.stats.lives.querySelectorAll('.heart');
     hearts.forEach((h, i) => {
-        if (i < stats.lives) h.classList.add('active');
-        else h.classList.remove('active');
+        h.classList.remove('active', 'broken');
+        // Reset text content to full heart
+        h.textContent = '❤️';
+
+        if (i < stats.lives) {
+            h.classList.add('active');
+        } else {
+            // Life lost - show broken heart
+            h.classList.add('broken');
+            h.textContent = '💔';
+        }
     });
 }
 

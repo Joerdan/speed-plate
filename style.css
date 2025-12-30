@@ -184,8 +184,46 @@ body {
 }
 
 .lives-display {
+    color: var(--primary);
+}
+
+.lives-display {
     display: flex;
     gap: 0.2rem;
+}
+
+.lives-display .heart {
+    opacity: 0.3;
+    transition: all 0.3s;
+}
+
+.lives-display .heart.active {
+    opacity: 1;
+    color: var(--secondary);
+    text-shadow: 0 0 10px var(--secondary-glow);
+    animation: heartPulse 1.5s infinite;
+}
+
+.lives-display .heart.broken {
+    opacity: 0.5;
+    color: var(--text-muted);
+    animation: none;
+    text-shadow: none;
+    transform: scale(0.9);
+}
+
+@keyframes heartPulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
 /* Timer Bar */
