@@ -564,23 +564,34 @@ body {
     }
 
     .stats-bar {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0.75rem;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
         width: 100%;
         max-width: 400px;
     }
 
     .stat-item {
         align-items: center;
+        min-width: 70px;
     }
 
     .stat-item .label {
-        font-size: 0.65rem;
+        font-size: 0.6rem;
     }
 
     .stat-item .value {
-        font-size: 1.1rem;
+        font-size: 1rem;
+    }
+
+    /* Compact lives display on mobile */
+    .lives-display {
+        gap: 0.15rem;
+    }
+
+    .lives-display .heart {
+        font-size: 1rem;
     }
 
     .hero-title {
