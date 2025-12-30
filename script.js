@@ -243,6 +243,36 @@ function init() {
             submitGuess();
         }
     });
+
+    // Custom Keyboard for Mobile
+    const keyboard = document.getElementById('custom-keyboard');
+    if (keyboard) {
+        keyboard.addEventListener('click', (e) => {
+            const btn = e.target.closest('.key-btn');
+            if (!btn) return;
+
+            e.preventDefault();
+            const key = btn.dataset.key;
+            const action = btn.dataset.action;
+
+            if (action === 'delete') {
+                ui.plate.input.value = ui.plate.input.value.slice(0, -1);
+            } else if (action === 'enter') {
+                submitGuess();
+            } else if (key) {
+                if (ui.plate.input.value.length < 10) {
+                    ui.plate.input.value += key;
+                }
+            }
+        });
+    }
+
+    // Prevent native keyboard on mobile
+    if (window.innerWidth <= 768) {
+        ui.plate.input.addEventListener('focus', (e) => {
+            e.target.blur();
+        });
+    }
 }
 
 function toggleModal(modal, show) {
